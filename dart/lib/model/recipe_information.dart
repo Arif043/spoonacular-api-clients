@@ -349,7 +349,9 @@ class RecipeInformation {
         healthScore: num.parse('${json[r'healthScore']}'),
         spoonacularScore: num.parse('${json[r'spoonacularScore']}'),
         pricePerServing: num.parse('${json[r'pricePerServing']}'),
-        analyzedInstructions: Object.listFromJson(json[r'analyzedInstructions']),
+        analyzedInstructions: (json['analyzedInstructions'] as List<dynamic>?)
+    ?.map((e) => Modelklasse.fromJson(e as Map<String, dynamic>))
+    .toList(),
         cheap: mapValueOfType<bool>(json, r'cheap')!,
         creditsText: mapValueOfType<String>(json, r'creditsText')!,
         cuisines: json[r'cuisines'] is Iterable
