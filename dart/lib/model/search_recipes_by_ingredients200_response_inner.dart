@@ -116,7 +116,9 @@ class SearchRecipesByIngredients200ResponseInner {
         missedIngredientCount: mapValueOfType<int>(json, r'missedIngredientCount')!,
         missedIngredients: SearchRecipesByIngredients200ResponseInnerMissedIngredientsInner.listFromJson(json[r'missedIngredients']).toSet(),
         title: mapValueOfType<String>(json, r'title')!,
-        unusedIngredients: Object.listFromJson(json[r'unusedIngredients']),
+        unusedIngredients: (json['unusedIngredients'] as List<dynamic>?)
+    ?.map((e) => Modelklasse.fromJson(e as Map<String, dynamic>))
+    .toList(),
         usedIngredientCount: num.parse('${json[r'usedIngredientCount']}'),
         usedIngredients: SearchRecipesByIngredients200ResponseInnerMissedIngredientsInner.listFromJson(json[r'usedIngredients']).toSet(),
       );
